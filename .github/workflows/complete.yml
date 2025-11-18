@@ -23,5 +23,10 @@ jobs:
       - name: test the code
         run: npm test
 
-      - name: Better Test Reports Action
+      - name: Run tests with coverage
+        run: npm test -- --coverage
+      
+      - name: Upload test coverage
         uses: mridang/action-test-reporter@v1.7.0
+        with:
+          coverage-file: coverage/lcov.info
