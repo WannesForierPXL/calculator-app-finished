@@ -1,4 +1,4 @@
-name: dependencies example
+name: build example
 on:
   push:
     branches:
@@ -15,10 +15,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: List directory contents
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bundle code into a zip
         run: |
-          echo "Listing all files and directories:" 
-          ls -alhR
+          zip -r build.zip . 
         
       
     
