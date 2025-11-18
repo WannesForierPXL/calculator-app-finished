@@ -1,0 +1,24 @@
+name: dependencies example
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        run: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v6.0.0
+        with:
+          node-version: '20'
+
+      - name: List directory contents
+        run: |
+          echo "Listing all files and directories:" 
+          ls -alhR
+        
+      
+    
