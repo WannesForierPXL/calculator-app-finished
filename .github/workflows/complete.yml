@@ -1,0 +1,24 @@
+name: Build Example
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v6.0.0
+        with:
+          node-version: '20'
+
+      - name: Bundle code into a zip
+        run: |
+          npm install
+          zip -r build.zip . 
+
+      - name: test the code
+        run: npm test
