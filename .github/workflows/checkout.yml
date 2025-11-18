@@ -10,5 +10,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5.0.1
-      
+        uses: actions/checkout@v4
+
+      - name: List directory contents
+        run: |
+          echo "Listing all files and directories:"
+          ls -alhR
