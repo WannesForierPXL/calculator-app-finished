@@ -1,0 +1,27 @@
+name: Test Deployment
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy-test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull latest Docker image
+        run: |
+          docker pull wannesf/node.js-demo-app:latest
+
+      - name: Stop existing containers
+        run: |
+          docker stop $(docker ps -q) || true
+          docker rm $(docker ps -aq) || true
+
+      - name: Run new container
+        run: |
+          docker run -d \
+            --name calculator \
+            -p 3000:3000 \
+            wannesf/node.js-demo-app:latest
